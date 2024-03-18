@@ -1,0 +1,14 @@
+apiVersion: v1
+kind: Pod
+metadata:
+  name: metrics-pod
+  namespace: cilium-monitoring
+  labels:
+    app: metrics-app  # Add labels here
+spec:
+  containers:
+  - name: metrics-container
+    image: abwqr/metrics
+    ports:
+    - containerPort: 8000
+

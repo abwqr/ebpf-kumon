@@ -1,0 +1,3 @@
+sudo docker build -t abwqr/bcc .
+sudo docker run --rm -it --privileged   -v /lib/modules:/lib/modules:ro   -v /sys:/sys:ro   -v /usr/src:/usr/src:ro abwqr/bcc
+sudo docker run -d --privileged   -v /lib/modules:/lib/modules:ro   -v /sys:/sys:ro   -v /usr/src:/usr/src:ro abwqr/bcc

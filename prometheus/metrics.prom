@@ -1,0 +1,8 @@
+# HELP dummy_metric A dummy metric for testing
+# TYPE dummy_metric gauge
+dummy_metric{label1="value1",label2="value2"} 42.0
+dummy_metric{label1="value1",label2="value2"} 35.5
+dummy_metric{label1="value1",label2="value2"} 78.9
+dummy_metric{label1="value1",label2="value2"} 19.2
+dummy_metric{label1="value1",label2="value2"} 64.7
+

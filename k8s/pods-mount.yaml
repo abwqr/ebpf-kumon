@@ -1,0 +1,38 @@
+apiVersion: v1
+kind: Pod
+metadata:
+  name: pvc-pod
+  namespace: cilium-monitoring
+spec:
+  containers:
+    - name: pvc-pod-container
+      image: abwqr/appointments:11671c
+      volumeMounts:
+        - mountPath: /data
+          name: data
+  volumes:
+    - name: data
+      persistentVolumeClaim:
+        claimName: shared-pvc1
+        
+---
+
+apiVersion: v1
+kind: Pod
+metadata:
+  name: pvc-pod2
+  namespace: cilium-monitoring
+spec:
+  containers:
+    - name: pvc-pod-container
+      image: abwqr/appointments:11671c
+      volumeMounts:
+        - mountPath: /data
+          name: data
+  volumes:
+    - name: data
+      persistentVolumeClaim:
+        claimName: shared-pvc1
+        
+        
+

@@ -1,0 +1,80 @@
+filebeat.inputs:
+- type: log
+  enabled: true
+  paths:
+    - /data/execsnoop.csv
+  fields_under_root: true
+  fields:
+    type: execsnoop
+    
+- type: log
+  enabled: true
+  paths:
+    - /data/exitsnoop.csv
+  fields_under_root: true
+  fields:
+    type: exitsnoop
+
+- type: log
+  enabled: true
+  paths:
+    - /data/gethostlatency.csv
+  fields_under_root: true
+  fields:
+    type: gethostlatency
+
+- type: log
+  enabled: true
+  paths:
+    - /data/tcprtt.csv
+  fields_under_root: true
+  fields:
+    type: tcprtt
+    
+- type: log
+  enabled: true
+  paths:
+    - /data/tcpconnect.csv
+  fields_under_root: true
+  fields:
+    type: tcpconnect
+    
+- type: log
+  enabled: true
+  paths:
+    - /data/runqlat.csv
+  fields_under_root: true
+  fields:
+    type: runqlat
+    
+- type: log
+  enabled: true
+  paths:
+    - /data/tcplife.csv
+  fields_under_root: true
+  fields:
+    type: tcplife
+    
+- type: log
+  enabled: true
+  paths:
+    - /data/cpudist.csv
+  fields_under_root: true
+  fields:
+    type: cpudist
+    
+- type: log
+  enabled: true
+  paths:
+    - /data/sda.csv
+  fields_under_root: true
+  fields:
+    type: biolatpcts_sda
+    
+setup.kibana:
+  host: "localhost:5601"
+  username: "elastic"
+  password: "changeme"
+ 
+output.logstash:
+  hosts: ["localhost:5044"]

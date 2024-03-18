@@ -1,0 +1,81 @@
+filebeat.inputs:
+- type: log
+  enabled: true
+  paths:
+    - /data/trace_signal.csv
+  fields_under_root: true
+  fields:
+    type: trace_signal
+    
+- type: log
+  enabled: true
+  paths:
+    - /data/trace_open.csv
+  fields_under_root: true
+  fields:
+    type: trace_open
+
+- type: log
+  enabled: true
+  paths:
+    - /data/top_tcp.csv
+  fields_under_root: true
+  fields:
+    type: top_tcp
+
+- type: log
+  enabled: true
+  paths:
+    - /data/top_file.csv
+  fields_under_root: true
+  fields:
+    type: top_file
+    
+- type: log
+  enabled: true
+  paths:
+    - /data/trace_fsslower.csv
+  fields_under_root: true
+  fields:
+    type: trace_fsslower    
+    
+- type: log
+  enabled: true
+  paths:
+    - /data/trace_tcpconnect.csv
+  fields_under_root: true
+  fields:
+    type: trace_tcpconnect
+
+- type: log
+  enabled: true
+  paths:
+    - /data/profile_tcprtt.csv
+  fields_under_root: true
+  fields:
+    type: profile_tcprtt
+    
+- type: log
+  enabled: true
+  paths:
+    - /data/profile_blockio.csv
+  fields_under_root: true
+  fields:
+    type: profile_blockio
+
+- type: log
+  enabled: true
+  paths:
+    - /data/snapshot_process.csv
+  fields_under_root: true
+  fields:
+    type: snapshot_process
+
+
+setup.kibana:
+  host: "localhost:5601"
+  username: "elastic"
+  password: "changeme"
+ 
+output.logstash:
+  hosts: ["localhost:5044"]

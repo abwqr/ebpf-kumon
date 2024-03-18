@@ -1,0 +1,24 @@
+version: '3'
+
+services:
+  bcc_container:
+    image: abwqr/bcc
+    privileged: true
+    volumes:
+      - /lib/modules:/lib/modules:ro
+      - /sys:/sys:ro
+      - /usr/src:/usr/src:ro
+      - /bcc/parsers:/data  # Mount the parsers directory as /data
+
+  filebeat_container:
+    image: docker.elastic.co/beats/filebeat:7.10.2
+    container_name: filebeat
+    user: root
+    network_mode: "host"
+    volumes:
+      - /home/ubuntu/fyp/bcc_data:/data
+      - /home/ubuntu/filebeat/filebeat.docker.yml:/usr/share/filebeat/filebeat.yml:ro
+    command: ["filebeat", "-e", "--strict.perms=false"]
+    depends_on:
+      - bcc_container
+

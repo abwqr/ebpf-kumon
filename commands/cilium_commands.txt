@@ -1,0 +1,24 @@
+helm install cilium cilium/cilium --version 1.14.5 \
+   --namespace kube-system \
+   --set prometheus.enabled=true \
+   --set operator.prometheus.enabled=true \
+   --set hubble.enabled=true \
+   --set hubble.metrics.enableOpenMetrics=true \
+   --set hubble.metrics.enabled="{dns,drop,tcp,flow,port-distribution,icmp,httpV2:exemplars=true;labelsContext=source_ip\,source_namespace\,source_workload\,destination_ip\,destination_namespace\,destination_workload\,traffic_direction}" --set hubble.relay.enabled=true --set hubble.ui.enabled=true
+   
+helm install cilium cilium/cilium --version 1.14.5 \
+   --namespace kube-system \
+   --set prometheus.enabled=true \
+   --set operator.prometheus.enabled=true
+   
+
+kubectl -n cilium-monitoring port-forward grafana-98b4b9789-tspfm 3000:3000
+   
+kubectl -n cilium-monitoring port-forward service/grafana --address 0.0.0.0,:: 3000:3000
+kubectl -n cilium-monitoring port-forward service/prometheus --address 0.0.0.0,:: 9090:9090
+cilium hubble port-forward &
+cilium hubble ui
+
+
+
+pqzf auen kanf spkq 
