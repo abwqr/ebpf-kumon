@@ -1,0 +1,18 @@
+# oomkill
+kubectl apply -f docs/examples/limited-memory-pod.yaml
+kubectl get pod -n oomkill-demo
+kubectl exec -n oomkill-demo -ti test-pod -- tail /dev/zero
+
+#fsslower
+kubectl run -it mypod --image ubuntu -- /bin/sh -c "apt-get update && apt-get install -y git"
+
+#tcpdrop
+kubectl create service nodeport nginx --tcp=80:80
+kubectl create deployment nginx --image=nginx
+kubectl run --rm -ti --privileged --image ubuntu shell -- bash
+//shell
+apt-get update
+apt install -y iproute2 curl
+tc qdisc add dev eth0 root netem drop 25%
+curl nginx
+

@@ -18,6 +18,15 @@ filebeat.inputs:
 - type: log
   enabled: true
   paths:
+    - /data/trace_oomkill.csv
+  fields_under_root: true
+  fields:
+    type: trace_oomkill
+
+
+- type: log
+  enabled: true
+  paths:
     - /data/top_tcp.csv
   fields_under_root: true
   fields:
@@ -70,6 +79,14 @@ filebeat.inputs:
   fields_under_root: true
   fields:
     type: snapshot_process
+
+- type: log
+  enabled: true
+  paths:
+    - /data/tcpdrop.csv
+  fields_under_root: true
+  fields:
+    type: tcpdrop
 
 
 setup.kibana:

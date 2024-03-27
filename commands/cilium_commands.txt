@@ -4,7 +4,16 @@ helm install cilium cilium/cilium --version 1.14.5 \
    --set operator.prometheus.enabled=true \
    --set hubble.enabled=true \
    --set hubble.metrics.enableOpenMetrics=true \
-   --set hubble.metrics.enabled="{dns,drop,tcp,flow,port-distribution,icmp,httpV2:exemplars=true;labelsContext=source_ip\,source_namespace\,source_workload\,destination_ip\,destination_namespace\,destination_workload\,traffic_direction}" --set hubble.relay.enabled=true --set hubble.ui.enabled=true
+   --set hubble.metrics.enabled="{dns,drop,tcp,flow,port-distribution,icmp,httpV2:exemplars=true;labelsContext=source_ip\,source_namespace\,source_workload\,destination_ip\,destination_namespace\,destination_workload\,traffic_direction}"\
+   --set hubble.relay.enabled=true \
+   --set hubble.ui.enabled=true \
+   --set kubeProxyReplacement=strict \
+   --set hostServices.enabled=false \
+   --set externalIPs.enabled=true \
+   --set nodePort.enabled=true \
+   --set hostPort.enabled=true \
+   --set bpf.masquerade=false \
+   --set ipam.mode=kubernetes
    
 helm install cilium cilium/cilium --version 1.14.5 \
    --namespace kube-system \
@@ -22,3 +31,22 @@ cilium hubble ui
 
 
 pqzf auen kanf spkq 
+kubectl delete pods -A --field-selector metadata.namespace=gadget
+kubectl krew install gadget
+kubectl gadget deploy
+sudo lsof -i :3000
+sudo kill 3504247
+
+
+
+# masterIP is needed for kubeProxyReplacement
+MASTER_IP="$(docker inspect kind-control-plane | jq '.[0].NetworkSettings.Networks.kind.IPAddress' -r)"
+helm upgrade cilium cilium/cilium --version 1.14.5 \
+  --install \
+  --namespace kube-system \
+  --values helm/cilium-values.yaml \
+  --set prometheus.enabled=true \
+  --set operator.prometheus.enabled=true \
+  --set hubble.enabled=true \
+  --set hubble.metrics.enableOpenMetrics=true \
+  --set hubble.metrics.enabled="{dns,drop,tcp,flow,port-distribution,icmp,httpV2:exemplars=true;labelsContext=source_ip\,source_namespace\,source_workload\,destination_ip\,destination_namespace\,destination_workload\,traffic_direction}" --set hubble.relay.enabled=true --set hubble.ui.enabled=true

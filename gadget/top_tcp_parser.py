@@ -12,10 +12,22 @@ def parse_output(output,filename):
     fields = lines[0].split()
     parsed_entry = {}
     data = ""
-    for i, field in enumerate(fields):
-        data = data + field + ","
-    #print(data[:-1])
+    for i in range(0, len(fields)):
+      if i == len(fields)-2 or i == len(fields)-1: 
+        print(fields[i])
+
+        if "KiB" in fields[i]: 
+       	  fields[i] = fields[i].replace("KiB", "")
+          print("KiB")
+        elif "B" in fields[i]: 
+          fields[i] = fields[i].replace("B", "")
+          print(fields[i])
+
+        
+        data = data + fields[i] + ","
+
     print(data.split(','))
+    
     with open(filename, 'a') as f:
         f.write(data[:-1] + '\n')
     # return parsed_data
