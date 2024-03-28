@@ -15,5 +15,5 @@ spec:
     image: busybox
     resources:
       limits:
-        memory: "128Mi"
+        memory: "64Mi"
     command: ["sleep", "inf"]

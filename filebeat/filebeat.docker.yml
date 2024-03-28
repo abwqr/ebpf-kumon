@@ -83,10 +83,10 @@ filebeat.inputs:
 - type: log
   enabled: true
   paths:
-    - /data/tcpdrop.csv
+    - /data/trace_tcpdrop.csv
   fields_under_root: true
   fields:
-    type: tcpdrop
+    type: trace_tcpdrop
 
 
 setup.kibana:

@@ -61,5 +61,5 @@ for line in input_data:
         #time.sleep(2)
         with open(filepath, "a") as f: 
             f.write(data)
-        print(data)
+        #print(data)
 

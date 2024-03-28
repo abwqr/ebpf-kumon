@@ -29,4 +29,4 @@ for line in input_data:
             # Write the numeric value to the file
             with open(filepath, "a") as f:
                 f.write(node + "," + avg_value + "\n")
-            print(node,avg_value)  # Print the value for confirmation
+            #print(node,avg_value)  # Print the value for confirmation

@@ -14,19 +14,28 @@ def parse_output(output,filename):
     data = ""
     for i in range(0, len(fields)):
       if i == len(fields)-2 or i == len(fields)-1: 
-        print(fields[i])
+       
 
-        if "KiB" in fields[i]: 
-       	  fields[i] = fields[i].replace("KiB", "")
-          print("KiB")
+        if "KiB" in fields[i]:
+          fields[i] = fields[i].replace("KiB", "")
+          value = float(fields[i])
+          value *= 1000 
+       	  fields[i] = str(value)
+          print("KiB", fields[i])
+        elif "MiB" in fields[i]:
+          fields[i] = fields[i].replace("MiB", "")
+          value = float(fields[i])
+          value *= 1000000 
+       	  fields[i] = str(value)
+          print("MiB", fields[i])
         elif "B" in fields[i]: 
           fields[i] = fields[i].replace("B", "")
           print(fields[i])
 
         
-        data = data + fields[i] + ","
+      data = data + fields[i] + ","
 
-    print(data.split(','))
+    print("data",data)
     
     with open(filename, 'a') as f:
         f.write(data[:-1] + '\n')
@@ -53,8 +62,8 @@ if __name__ == "__main__":
                         parse_output(line,filename)
                 else:
                     parse_output(header,filename)
-                    print(line)
+                    #print(line)
 
             except FileNotFoundError:
                 parse_output(header,filename)
-                print(line)
+                #print(line)
