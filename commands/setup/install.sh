@@ -45,7 +45,7 @@ fi
 source ./scripts/krew.sh
 export PATH="${KREW_ROOT:-$HOME/.krew}/bin:$PATH"
 kubectl krew install gadget
-
+kubectl gadget deploy
 # 4. Check Cilium status, wait for completion
 echo "Checking Cilium status..."
 cilium status --wait
